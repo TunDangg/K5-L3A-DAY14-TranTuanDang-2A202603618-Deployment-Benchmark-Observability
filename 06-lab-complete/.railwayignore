@@ -1,0 +1,9 @@
+# Không upload lên Railway khi chạy `railway up`
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+benchmark-observability/

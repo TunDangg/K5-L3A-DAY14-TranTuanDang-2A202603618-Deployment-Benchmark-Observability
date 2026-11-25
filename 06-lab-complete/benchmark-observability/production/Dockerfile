@@ -26,6 +26,9 @@ RUN chown -R agent:agent /app
 USER agent
 
 ENV PATH=/home/agent/.local/bin:$PATH
+# Fix: user "agent" có home = /app (useradd -d /app) nên Python mặc định tìm user site-packages ở
+# /app/.local → ModuleNotFoundError: uvicorn. Chỉ rõ nơi đã copy packages từ stage builder.
+ENV PYTHONUSERBASE=/home/agent/.local
 ENV PYTHONPATH=/app
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
